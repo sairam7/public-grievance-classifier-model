@@ -1,0 +1,20 @@
+LOAD DATA INFILE 'C:/Program Files/mysql-8.0.17-winx64/cpgrams_4.csv' 
+INTO TABLE pg_complaints 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"' 
+ESCAPED BY '\\'
+LINES TERMINATED BY '\n'
+;
+ALTER TABLE database.table MODIFY COLUMN col VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+mysqld --secure-file-priv=""
+
+LOAD DATA INFILE 'C:/Program Files/mysql-8.0.17-winx64/pg_resolutions1000000.csv' 
+INTO TABLE pg_resolutions
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"' 
+ESCAPED BY '\\'
+LINES TERMINATED BY '\n'
+;
+
+select count(*) from pg_complaints A inner join pg_resolutions B on rtrim(ltrim(A.registration_no))=rtrim(ltrim(B.registration_no));
