@@ -62,6 +62,9 @@ if (int(svm_accuracy))< (int(NB_accuracy)):
     joblib.dump(txt_clf_NB, 'model.pkl')
     txt_clf_NB = joblib.load('model.pkl')
     print("Model dumped!")
+    complete_df = pd.concat([y_test], axis=1)  # features and actual
+    complete_df['Predicted'] = predictions_NB
+    print(complete_df)
 
 
 else:    
@@ -69,9 +72,8 @@ else:
     joblib.dump(text_clf_svm, 'model.pkl')
     text_clf_svm = joblib.load('model.pkl')
     print("Model dumped!")
+    complete_df = pd.concat([y_test], axis=1)  # features and actual
+    complete_df['Predicted'] = predictions_svm
+    print(complete_df)
 
 
-
-#complete_df = pd.concat([y_test], axis=1)  # features and actual
-#complete_df['Predicted'] = predictions
-#print(complete_df)
